@@ -1,4 +1,37 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-    <app-login></app-login>
+<div class="login-form">
+    <h1>
+        Authentication
+    </h1>
+
+    <ng-template *ngIf="isAuthenticated; then thenBlock; else elseBlock"></ng-template>
+    <ng-template #thenBlock>
+            <button type="button" class="btn btn-light" (click)="testApi()">Test API</button>
+            <button type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
+    </ng-template>
+    <ng-template #elseBlock>
+        <form [formGroup]="loginForm">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
+                <small id="emailHelp" class="form-text text-muted">Email: me@domain.com - Password: password</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+            </div>
+            <button type="button" class="btn btn-primary" (click)="login($event)">Login</button>
+        </form>
+
+        <!-- Markup for error messages... -->
+        <p></p>
+        <div class="alert alert-danger" role="alert" *ngIf="email.invalid && (email.dirty || email.touched) || 
+                    password.invalid && (password.dirty || password.touched)">
+            <p *ngIf="email.hasError('required')">Email is required.</p>
+            <p *ngIf="email.hasError('minlength')">The maximum length for the email is 5 characters.</p>
+
+            <p *ngIf="password.hasError('required')">Password is required.</p>
+            <p *ngIf="password.hasError('minlength')">The maximum length for the password is 8 characters.</p>
+        </div>
+    </ng-template>
 </div>
