@@ -20,7 +20,12 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
             </div>
-            <button type="button" class="btn btn-primary" (click)="login($event)">Login</button>
+            <button type="button" class="btn btn-primary"
+                (click)="login($event)"
+                [disabled]="loginForm.invalid"
+            >
+                Login
+            </button>
         </form>
 
         <!-- Markup for error messages... -->
