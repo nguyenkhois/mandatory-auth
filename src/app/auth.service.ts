@@ -8,13 +8,9 @@ import {
 
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-
 import * as jwtDecode from 'jwt-decode';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { User } from './constants';
-
-const helper = new JwtHelperService();
 
 @Injectable({
     providedIn: 'root'
